@@ -36,5 +36,9 @@ class PostDetailView(DetailView):
         return get_object_or_404(Post, id=id_)
 
 def register(request):
-    form = UserCreationForm()
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        
+    else:    
+        form = UserCreationForm()
     return render(request, 'users/register.html', {"form":form})
