@@ -1,14 +1,14 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.urls import reverse
+from django.contrib import messages
 from .models import Post
-from .forms import PostForm
+from .forms import PostForm, UserRegisterForm
 from django.views.generic import (
     ListView,
     CreateView,
     DetailView,
 )
-from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
 
@@ -37,8 +37,12 @@ class PostDetailView(DetailView):
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            # messages.success(request, f'Account created for {username}!')
+            return redirect('/')
     else:    
-        form = UserCreationForm()
+        form = UserRegisterForm()
     return render(request, 'users/register.html', {"form":form})
