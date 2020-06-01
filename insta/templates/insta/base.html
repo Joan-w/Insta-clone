@@ -19,22 +19,23 @@
             <div class="instalogo">
                 <a href="Home.html"><i class="fab fa-instagram"></i> </a>
                 <a class="vl"></a>
-                <a href="" style="font-family: 'Cookie', cursive; font-size: 35px;">Instagram</a>
+                <a href="/" style="font-family: 'Cookie', cursive; font-size: 35px;">Instagram</a>
             </div>
             <div class="search_bar">
                 <input type="text" placeholder="Search">
                 <a href="search"><i class="fas fa-search"></i></a>
             </div>
             <div class="contact_icons">
-                <a href="explore"><i class="far fa-compass"></i></a>
-                <a href="likes"> <i class="far fa-heart"></i> </a>
-                <a href="profile"> <i class="far fa-user"></i> </a>
-            </div>
-            <div class="nav-links ml-5">
-                <a href="">Login</a>
-                <a href="">Register</a>
-
-                <a href="">Logout</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'profile' %}"><i class="far fa-user"></i> </a>
+                    <a href="explore"><i class="far fa-compass"></i></a>
+                    <a href="likes"><i class="far fa-heart"></i> </a>
+                    <a href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                    <a href="explore"><i class="far fa-compass"></i></a>
+                    <a href="likes"><i class="far fa-heart"></i> </a>
+                    <a href="{% url 'login' %}">Log In</a>
+                {% endif %}
             </div>
         </div>
     </header>
