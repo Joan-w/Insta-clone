@@ -1,16 +1,24 @@
 {% extends 'insta/base.html' %}
 {% load crispy_forms_tags %}
-{% block title %} Create Post {% endblock %}
+{% block title %} User Profile {% endblock %}
 
 {% block content %}
-    <div class="content-section" 
+    <div class="container" 
         style="padding: 10px 20px;
                 border: 1px solid #dddddd;
                 border-radius: 3px;
                 margin-bottom: 20px;
                 margin-left: 25%;
-                width: 35%;">
-        <h1>{{ user.username }}</h1>
+                width: 35%;
+                font-family: monospace;">
+        <div class="media">
+            <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" alt="profile picture" width="100px" height="100px">
+            <div class="media-body ml-3">
+                <h2 class="account-heading">{{ user.username }}</h2>
+                <p class="text-secondary">{{ user.email }}</p>
+                <p class="text-center" style="font-weight: 500; font-size: 18px;">{{ user.profile.bio | linebreaksbr }}</p>
+            </div>
+        </div>
     </div>
 
 {% endblock %}
