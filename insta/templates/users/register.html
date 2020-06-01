@@ -2,7 +2,14 @@
 {% block title %} Create Post {% endblock %}
 
 {% block content %}
-    <div class="content-section">
+    <div class="content-section" 
+        style="padding: 10px 20px;
+                border: 1px solid #dddddd;
+                border-radius: 3px;
+                margin-bottom: 20px;
+                margin-left: 25%;
+                width: 50%;"
+                >
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
