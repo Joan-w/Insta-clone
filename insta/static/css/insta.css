@@ -1,7 +1,6 @@
 body {
     background-color: #ffff;
 }
-
 header{
     background-color: #FAFAFA;
     border-bottom: 1px solid #ccc;
@@ -22,14 +21,12 @@ header{
 .navigation a{
     color: #111;
 }
-
 .instalogo {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     width: 30%;
 }
-
 .instalogo a{
     font-size: 30px;
     padding-left: 10px;
@@ -39,7 +36,6 @@ header{
     height: 45px;
     margin-left: 20px;
 }
-
 .contact_icons{
     display: flex;
     justify-content: flex-end;
@@ -50,7 +46,6 @@ header{
     font-size: 25px;
     font-weight: lighter;
 }
-
 .search_bar{
     display: flex;
     width: 30%;
@@ -73,10 +68,8 @@ header{
     position: absolute;
     width: 100%;
     top:83px;
-    left:0;
-   
+    left:0;   
 }
-
 .card{
     background-color: #fff; 
     margin: 0 auto;
@@ -187,7 +180,6 @@ header{
     margin: 0;
 }
 .time_posted{
-
     font-size: 10px;
     font-weight: 300;
     color: #111;
