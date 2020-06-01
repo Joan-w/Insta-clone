@@ -1,0 +1,9 @@
+{% extends 'insta/base.html' %}
+{% block title %} Create Post {% endblock %}
+
+{% block content %}
+    <p>{{ post.author }}</p>
+    <img src="{{ post.image.url }" height="600px" alt="">
+    <p>{{ post.caption }}</p>
+
+{% endblock %}
