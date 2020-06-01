@@ -6,7 +6,9 @@
     <div class="card">
         <div class="card_header">
             <div class="profile_image">
-                
+                {% if profile.image %}
+                    <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" width="50px" height="50px">
+                {% endif %}
             </div>
             <div class="post_info">
                 <div class="post_name">{{ post.author }}</div>
