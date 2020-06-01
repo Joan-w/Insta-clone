@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.utils import timezone
+from django.urls import reverse
 from .models import Post
 from .forms import PostForm
 from django.views.generic import (
@@ -11,7 +12,7 @@ from django.views.generic import (
 
 class PostListView(ListView):
     template_name = 'insta/home.html'
-    queryset = Post.objects.all().filter(created_date__lte=timezone.now())
+    queryset = Post.objects.all().filter(created_date__lte=timezone.now()).order_by('-created_date')
     context_object_name = 'posts'
 
 class PostCreateView(CreateView):
