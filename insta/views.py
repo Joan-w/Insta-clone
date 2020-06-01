@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.urls import reverse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from .models import Post
 from .forms import PostForm, UserRegisterForm
 from django.views.generic import (
@@ -47,5 +48,6 @@ def register(request):
         form = UserRegisterForm()
     return render(request, 'users/register.html', {"form":form})
 
+@login_required
 def profile(request):
     return render(request, 'users/profile.html')
