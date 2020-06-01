@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from django.urls import reverse
 from .models import Post
@@ -6,7 +6,9 @@ from .forms import PostForm
 from django.views.generic import (
     ListView,
     CreateView,
+    DetailView,
 )
+from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
 
@@ -25,3 +27,14 @@ class PostCreateView(CreateView):
         print(form.cleaned_data)
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+class PostDetailView(DetailView):
+    template_name = 'insta/details.html'
+    queryset = Post.objects.all().filter(created_date__lte=timezone.now())
+    def get_object(self):
+        id_ = self.kwargs.get('id')
+        return get_object_or_404(Post, id=id_)
+
+def register(request):
+    form = UserCreationForm()
+    return render(request, 'users/register.html', {"form":form})
