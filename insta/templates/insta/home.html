@@ -1,5 +1,5 @@
 {% extends 'insta/base.html' %}
-{%block title%} Instagrampy {% endblock %}
+{%block title%} Instagram {% endblock %}
 
 {% block content %}
 {% for post in posts %}
@@ -35,7 +35,7 @@
         </div>
 
         <div class="time_posted">
-            {{post.created_date | timesince}} ago
+            {{ post.created_date | timesince }} ago
         </div>
 
     </div>
