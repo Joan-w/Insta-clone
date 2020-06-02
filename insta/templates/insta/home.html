@@ -2,44 +2,44 @@
 {%block title%} Instagram {% endblock %}
 
 {% block content %}
-{% for post in posts %}
-    <div class="card">
-        <div class="card_header">
-            <div class="profile_image">
-                {% if profile.image %}
-                    <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" width="50px" height="50px">
+    <a href="create/" class="btn btn-outline-secondary" style="margin-left: 50%;">New Post</a>
+    </br></br>
+    {% for post in posts %}
+        <div class="card">
+            <div class="card_header">
+                <div class="profile_image">
+                    <img class="rounded-circle account-img" src="{{ post.author.profile.image.url }}" width="50px" height="50px">
+                </div>
+                <div class="post_info">
+                    <div class="post_name"><a href="#" style="text-decoration: none; color: black;">{{ post.author }}</a></div>
+                    <div class="post_location">Nairobi</div>
+                </div>
+            </div>
+                    
+            
+            <div class="post_image">
+                {% if post.image %}
+                    <img src="{{ post.image.url }}" alt="Photo">
                 {% endif %}
             </div>
-            <div class="post_info">
-                <div class="post_name">{{ post.author }}</div>
-                <div class="post_location">Nairobi</div>
+            <div class="engagement">
+                <a href="#"><i class="fas fa-heart"></i></a>
+                <a href="#"><i class="far fa-comment"></i></a>
+                <a href="#"><i class="far fa-share-square"></i></a>
+                <a href="#" class="fa-bookmarks"><i class="far fa-bookmark"></i></a>
             </div>
-        </div>
-                
-        
-        <div class="post_image">
-            {% if post.image %}
-                <img src="{{ post.image.url }}" alt="Photo">
-            {% endif %}
-        </div>
-        <div class="engagement">
-            <a href=""><i class="fas fa-heart"></i></a>
-            <a href=""><i class="far fa-comment"></i></a>
-            <a href=""><i class="far fa-share-square"></i></a>
-            <a href="" class="fa-bookmarks"><i class="far fa-bookmark"></i></a>
-        </div>
-        <div class="likes">
-          <a href="#">345 likes</a>
-        </div>
-        <div class="caption">
-            <a href=""><h2>{{ post.author }}</h2></a>
-            <span><p>{{ post.caption | linebreaksbr | truncatechars:60 }}</p></span>
-        </div>
+            <div class="likes">
+            <a href="#">345 likes</a>
+            </div>
+            <div class="caption">
+                <a href="#"><h6 style="font-weight: 600;">{{ post.author }}</h6></a>
+                <span><p>{{ post.caption | linebreaksbr | truncatechars:60 }}</p></span>
+            </div>
 
-        <div class="time_posted">
-            {{ post.created_date | timesince }} ago
-        </div>
+            <div class="time_posted">
+                {{ post.created_date | timesince }} ago
+            </div>
 
-    </div>
-{% endfor %}
+        </div>
+    {% endfor %}
 {% endblock %}
