@@ -1,5 +1,5 @@
 # PROJECT
-### Pics-World Album
+### Instaclone
 ![Screenshot from 2020-05-27 13-29-13](https://user-images.githubusercontent.com/58691817/83008899-98213e80-a01e-11ea-9ef4-7a2fdc1a681f.png)
 
 
@@ -7,17 +7,15 @@
 ### Joan Kinyua
 
 ## USER STORIES
-View my photos as posted. Click on a single photo to expand it and also view the details of that specific photo.
-The photo details must appear on a modal within the same route as the main page. Search for different categories
-of photos. (ie. HIking, code) Copy a link to the photo to share with your friends.
+An Instagram lookalike with the same features as the original Instagram.
 
 ## SetUp / Installation Requirements
-* Clone the repo by running: ```git clone https://github.com/Joan-w/gallery.git```
+* Clone the repo by running: ```git clone https://github.com/Joan-w/Insta-clone.git```
 * Navigate to the project directory;
-* cd Gallery-Photo
+* cd instaclone
 * Create a virtual environment and activate it python3 -m venv virtual . virtual/bin/activate
 * Create a database using postgress, type the following commands; $psql
-* Then run the command to create a new database create database gallery
+* Then run the command to create a new database create database insta
 * Install dependencies pip install -r requirements.txt
 * Create database migrations python3 manage.py makemigrations photoz python3 manage.py migrate
 * Run the app python3 manage.py runserver
