@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +26,7 @@ SECRET_KEY = '0773b1236795d871775624bd9863aef9bc9929d24b46d7b1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.localhost', 'instagramclone2020.herokuapp.com', '.127.0.0.1']
+ALLOWED_HOSTS = ['instagramclone2020.herokuapp.com']
 
 
 # Application definition
@@ -129,3 +130,5 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = 'login' 
+
+django_heroku.settings(locals())
