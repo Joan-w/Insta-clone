@@ -1,7 +1,6 @@
 # PROJECT
 ### Instaclone
-![Screenshot from 2020-05-27 13-29-13](https://user-images.githubusercontent.com/58691817/83008899-98213e80-a01e-11ea-9ef4-7a2fdc1a681f.png)
-
+![Screenshot from 2020-06-03 02-26-21](https://user-images.githubusercontent.com/58691817/83579458-0051b200-a542-11ea-83f8-94f91249b3ae.png)
 
 ## AUTHOR
 ### Joan Kinyua
