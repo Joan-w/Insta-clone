@@ -84,9 +84,8 @@ header{
 }
 .profile_image{
     display: inline-block;
-    background-color: royalblue;
-    height: 30px;
-    width: 30px;
+    height: 50px;
+    width: 50px;
     padding:0;
     margin:0;
     border: 0 solid #000;
