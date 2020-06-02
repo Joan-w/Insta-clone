@@ -25,7 +25,7 @@ SECRET_KEY = '0773b1236795d871775624bd9863aef9bc9929d24b46d7b1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['instagramclone2020.herokuapp.com']
+ALLOWED_HOSTS = ['.localhost', 'instagramclone2020.herokuapp.com', '.127.0.0.1']
 
 
 # Application definition

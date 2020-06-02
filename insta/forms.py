@@ -20,6 +20,7 @@ class PostForm(forms.ModelForm):
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
+    bio = forms.Textarea()
 
     class Meta:
         model = User
@@ -43,4 +44,4 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['image']
+        fields = ['image', 'bio']
