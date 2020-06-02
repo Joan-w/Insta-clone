@@ -12,13 +12,24 @@
                 width: 35%;
                 font-family: monospace;">
         <div class="media">
-            <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" alt="profile picture" width="100px" height="100px">
+            <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" width="100px" height="100px" alt="profile picture">
             <div class="media-body ml-3">
                 <h2 class="account-heading">{{ user.username }}</h2>
                 <p class="text-secondary">{{ user.email }}</p>
-                <p class="text-center" style="font-weight: 500; font-size: 18px;">{{ user.profile.bio | linebreaksbr }}</p>
+                <p class="text-center" style="font-weight: 500; font-size: 18px; color: crimson;">{{ user.profile.bio | linebreaksbr }}</p>
             </div>
         </div>
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Profile Info</legend>
+                {{ u_form | crispy }}
+                {{ p_form | crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Update</button>
+            </div>
+        </form>
     </div>
 
 {% endblock %}
