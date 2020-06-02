@@ -2,13 +2,16 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.urls import reverse
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from .models import Post
-from .forms import PostForm, UserRegisterForm
+from .forms import PostForm, UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.views.generic import (
     ListView,
     CreateView,
     DetailView,
+    UpdateView,
+    DeleteView,
 )
 
 # Create your views here.
@@ -18,8 +21,8 @@ class PostListView(ListView):
     queryset = Post.objects.all().filter(created_date__lte=timezone.now()).order_by('-created_date')
     context_object_name = 'posts'
 
-class PostCreateView(CreateView):
-    template_name = 'insta/create_post.html'
+class PostCreateView(LoginRequiredMixin, CreateView):
+    template_name = 'insta/post-create.html'
     form_class = PostForm
     queryset = Post.objects.all()
     success_url = '/'
@@ -30,11 +33,26 @@ class PostCreateView(CreateView):
         return super().form_valid(form)
 
 class PostDetailView(DetailView):
-    template_name = 'insta/details.html'
-    queryset = Post.objects.all().filter(created_date__lte=timezone.now())
-    def get_object(self):
-        id_ = self.kwargs.get('id')
-        return get_object_or_404(Post, id=id_)
+    model = Post
+
+
+class PostUpdateView(LoginRequiredMixin, UpdateView):
+    model = Post
+    fields = ['image', ]
+    
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Post
+    success_url = '/'
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
 
 def register(request):
     if request.method == 'POST':
@@ -50,4 +68,22 @@ def register(request):
 
 @login_required
 def profile(request):
-    return render(request, 'users/profile.html')
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            # messages.success(request, 'Your account has been updated successfuly!')
+            return redirect('profile')
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+
+    context = {
+        'u_form': u_form,
+        'p_form': p_form,
+    }
+
+    return render(request, 'users/profile.html', context)
